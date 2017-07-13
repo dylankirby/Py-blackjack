@@ -1,4 +1,4 @@
-import random
+import random, sys
 
 # -------- Begin definition of objects ---------------
 class Player(object):
@@ -65,6 +65,7 @@ def play_again():
 		run_game()
 	else:
 		print 'Thanks for playing, you walk away with $%s' %(player.bankroll)
+		sys.exit()
 
 # In the event of the player losing, this will inform them of how much they lost, and see if they want to play again
 def player_loss():
@@ -116,7 +117,7 @@ def run_game():
 	dealer_hand.append(game.choose_card())
 	print_table()
 	print ' '
-	while game.pot == 0 or 
+	while game.pot == 0:
 		try:
 			bet(input('How much would you like to bet on those cards? '))
 		except:
@@ -141,7 +142,14 @@ def run_game():
 			continue
 		else:
 			if check_hand_value(dealer_hand) > 15 and stay == True:
-				print_table()
+				for card in dealer_hand:
+					print card,
+
+				print '----------'
+
+				for card in player_hand:
+					print card,
+
 				check_win(player_hand, dealer_hand)
 			elif check_hand_value(dealer_hand) <= 15:
 				give_card(dealer_hand)
