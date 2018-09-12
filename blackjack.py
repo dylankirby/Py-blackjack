@@ -108,6 +108,14 @@ def print_table():
 		print card,
 	print ''
 
+def print_table_final():
+	for card in dealer_hand:
+		print card
+	print '----------'
+	for card in player_hand:
+		print card,
+	print ''
+
 
 # This will run the game
 def run_game():
@@ -115,7 +123,7 @@ def run_game():
 	global stay
 	player_hand.append(game.choose_card())
 	dealer_hand.append(game.choose_card())
-	print_table()
+	print_table_final()
 	print ' '
 	while game.pot == 0:
 		try:
@@ -142,13 +150,7 @@ def run_game():
 			continue
 		else:
 			if check_hand_value(dealer_hand) > 15 and stay == True:
-				for card in dealer_hand:
-					print card,
-
-				print '----------'
-
-				for card in player_hand:
-					print card,
+				print_table_final()
 
 				check_win(player_hand, dealer_hand)
 			elif check_hand_value(dealer_hand) <= 15:
@@ -170,35 +172,3 @@ def run_game():
 print "Welcome to Python Blackjack, where all the cool kid's come to play"
 run_game()
 
-
-
-
-
-# Game will start by asking the player for an initial bet, telling them how much money they have
-# This initial bet should be subtracted from their bankroll
-# Will then give the player one card, and the dealer one card, and give the face value of the dealer's card
-# This should print out like so
-# K **** (These are the dealer's cards)
-# --------
-# 4 ***** (These are the player's cards)
-# Program will need to keep track of the minimum count of a players cards
-# Then it will ask the player if they would like to hit or stay
-# If they choose hit, they will be given a card, should be added to the list of their cards and displayed to them
-# The value of the card should be added to their hand value
-# If they bust, there should be a message that says you busted, you lost your money
-# the player should be told how much money they have, and asked if they want to play again
-# # If they want to play again, The game should then start over, pot resets to 0
-# if they dont bust, then the game should give the dealer a card and add to his count, 
-# if the dealer busts, then the player should be notified they won, because the dealer busted
-# The pot should be added to their bankroll, and reset to 0
-# They should be asked if they want to play again, if so, game starts over
-
-# Will need functions for
-# 	bet
-# 	stay
-# 	Eval win
-
-# Only realy need a player object, and a game object
-
-# player object will determine how much money they player has
-# game object will give us the deck and pot
