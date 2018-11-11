@@ -37,7 +37,7 @@ def test_reset_hand():
 
 @pytest.mark.repeat(500)
 def test_hand_value():
-	card_values = {'A': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 10, 'Q': 10, 'K': 10}
+	card_values = {'A': 11, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 10, 'Q': 10, 'K': 10}
 	test_player = Player()
 	test_deck = Deck()
 
@@ -47,6 +47,9 @@ def test_hand_value():
 		card = test_deck.draw()
 		hand_value += card_values[card]
 		test_player.hand.append(card)
+
+	if 'A' in test_player.hand and hand_value > 21:
+		hand_value -= 10
 
 	assert test_player.get_hand_value() == hand_value
 
