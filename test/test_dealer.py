@@ -33,7 +33,7 @@ def test_dealer_decision():
         hand_value += card_values[card]
 
     if hand_value < 15:
-        assert test_dealer.evaluate_hand() == "Hit"
+        assert test_dealer.evaluate_hand() == "hit"
     else:
-        assert test_dealer.evaluate_hand() == "Stay"
+        assert test_dealer.evaluate_hand() == "stay"
 

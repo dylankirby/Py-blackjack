@@ -1,4 +1,6 @@
 import sys
+
+from mock import MagicMock
 import pytest
 
 sys.path.append('..')
@@ -58,6 +60,7 @@ def test_check_bust():
 #Tests that game can evaluate both hands once players have stayed and determine the winner
 def test_check_win():
 	test_game = Game()
+	test_game.player_win = MagicMock()
 
 	dealer_cards = ["J", "3"]
 	player_cards = ["A", "J"]
@@ -68,4 +71,4 @@ def test_check_win():
 	for card in player_cards:
 		test_game.player.hand.append(card)
 
-	assert test_game.check_win()
+	assert test_game.player_win.assert_called_once()
