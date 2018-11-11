@@ -18,7 +18,7 @@ def test_dealer_bankroll():
 def test_dealer_decision():
     """Tests dealers hit/stay decision mechanics"""
     card_values = {
-        'A': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, 
+        'A': 11, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, 
         '8': 8, '9': 9, '10': 10, 'J': 10, 'Q': 10, 'K': 10
         }
     test_dealer = Dealer()
@@ -31,6 +31,9 @@ def test_dealer_decision():
         card = test_deck.draw()
         test_dealer.hand.append(card)
         hand_value += card_values[card]
+
+    if 'A' in test_dealer.hand and hand_value > 21:
+        hand_value -= 10
 
     if hand_value < 15:
         assert test_dealer.evaluate_hand() == "hit"
