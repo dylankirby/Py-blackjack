@@ -11,12 +11,12 @@ class Player(object):
 
     def make_bet(self, bet_amt):
         """Deducts the players bet amount from their bankroll if they have the funds"""
-        if bet_amt <= self.bankroll: 
+        if bet_amt <= self.bankroll:
             self.bankroll -= bet_amt
         else:
             raise ValueError("You don't have enough money for that")
 
-    #Players hand is reset, ie at the end of the round
+    #Resets the players
     def reset_hand(self):
         """Resets the players hand to an empty list"""
         self.hand = []
